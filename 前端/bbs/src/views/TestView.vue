@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import * as api from '@/api' ;
 const username = ref('')
 const password = ref('')
+const gender = ref('')
 const login = (async ()=>{
 	const res = await api.login(username.value,password.value)
 	console.log(res)
@@ -14,7 +15,7 @@ const login = (async ()=>{
 	<div class="row">
 		<div class="box">
 				<div class="title">
-					Login
+					 Register
 				</div>
 				<div class="input" @keydown.enter="login">
 					<div class="input-item">
@@ -25,6 +26,14 @@ const login = (async ()=>{
 						<span>密码</span>
 						<input type="password" v-model="password">
 					</div>
+					<div class="input-item">
+						<span>性别</span>
+						<select v-model="gender">
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
+					</div>
+				
 				</div>
 				<div class="button">
 					<button @click="login" type="submit">登录</button>

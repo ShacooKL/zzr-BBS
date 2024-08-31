@@ -1,7 +1,7 @@
 // api.js
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8888/Web';
+const API_BASE_URL = 'http://localhost:8080';
 
 // 创建 Axios 实例
 const api = axios.create({
@@ -12,23 +12,63 @@ const api = axios.create({
   },
 });
 
-export const login = (name,password) => {
-	// 正常：
-  // return axios.get(`/book/query/${id}`);
-	// 测试：
-	// 模拟异步请求
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-			console.log(name)
-			console.log(password)
-      // 模拟异步操作成功，返回数据
-      if(password =='123')
-        resolve({state:true,id:55210919,name:name,avatar:'/img/profile.jpg',email:name+'@qq.com'});
-      else
-        resolve({state:false})
-      // 或者模拟异步操作失败y
-      // reject(new Error('Failed to fetch book.'));
-    }, 50); 
+export const login = (username,password) => {
+  console.log(username+password)
+
+  api.post('login', {
+    username: username,        // 参数 firstName
+    password: password   // 参数 lastName
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
   });
+	// 测试：
+	// // 模拟异步请求
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+	// 		console.log(name)
+	// 		console.log(password)
+  //     // 模拟异步操作成功，返回数据
+  //     if(password =='123')
+  //       resolve({state:true,id:55210919,name:name,avatar:'/img/profile.jpg',email:name+'@qq.com'});
+  //     else
+  //       resolve({state:false})
+  //     // 或者模拟异步操作失败y
+  //     // reject(new Error('Failed to fetch book.'));
+  //   }, 50); 
+  // });
+
+};
+export const register = (name,password,gender) => {
+	// 正常：
+  axios.post('/register', {
+    name: name,        // 参数 firstName
+    password: password,    // 参数 lastName
+    gender:gender
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+	// 测试：
+	// // 模拟异步请求
+  // return new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+	// 		console.log(name)
+	// 		console.log(password)
+  //     // 模拟异步操作成功，返回数据
+  //     if(password =='123')
+  //       resolve({state:true,id:55210919,name:name,avatar:'/img/profile.jpg',email:name+'@qq.com'});
+  //     else
+  //       resolve({state:false})
+  //     // 或者模拟异步操作失败y
+  //     // reject(new Error('Failed to fetch book.'));
+  //   }, 50); 
+  // });
 
 };
