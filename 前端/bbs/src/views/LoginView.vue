@@ -1,13 +1,11 @@
 <script setup>
 import { ref } from 'vue';
-import * as api from '@/api' ;
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore';
 const username = ref('')
 const password = ref('')
 const router = useRouter()
-const login = (()=>{
-	api.login(username.value,password.value)
-})
+const userStore= useUserStore()
 const toRegister = (async ()=>{
 	router.push('/register')
 })
@@ -30,7 +28,7 @@ const toRegister = (async ()=>{
 					</div>
 				</div>
 				<div class="button">
-					<button @click="login" type="submit">登录</button>
+					<button @click="userStore.login(username,password)" type="submit">登录</button>
 					<button @click="toRegister"> 注册</button>
 				</div>
 		</div>

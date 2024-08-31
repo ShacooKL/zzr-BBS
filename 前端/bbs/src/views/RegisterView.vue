@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router'
-import * as api from '@/api' ;
+import {useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore';
 const username = ref('')
 const password = ref('')
 const gender = ref('')
@@ -9,9 +9,7 @@ const router = useRouter()
 const toLogin = (async ()=>{
 	router.push('/login')
 })
-const register = (async ()=>{
-	await api.register(username,password,gender)
-})
+const userStore = useUserStore()
 </script>
 <template>
 <div class="column">
@@ -40,7 +38,7 @@ const register = (async ()=>{
 				</div>
 				<div class="button">
 					<button @click="toLogin" type="submit">登录</button>
-					<button  @click="register">注册</button>
+					<button  @click="userStore.register(username,password,gender)">注册</button>
 				</div>
 		</div>
 	</div>
