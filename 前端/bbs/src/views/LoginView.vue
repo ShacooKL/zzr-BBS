@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import * as api from '@/api' ;
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 const username = ref('')
 const password = ref('')
 const router = useRouter()
