@@ -21,6 +21,7 @@ export const useUserStore = defineStore('user', () => {
 
   const register = ((username,password,gender) => {
     const result =  api.register(username,password,gender)
+    console.log(result)
     if(result==null){
       alert("注册失败")
     }else{
