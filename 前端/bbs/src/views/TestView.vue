@@ -8,7 +8,7 @@ import PostItem  from '@/components/PostItem.vue'
 <div class="main">
 	
 <PostItem/>
-<PostItem/><PostItem/><PostItem/><PostItem/><PostItem/><PostItem/><PostItem/>
+
 </div>
 
 	

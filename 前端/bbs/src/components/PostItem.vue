@@ -1,7 +1,15 @@
 <script setup>
 import { ref } from 'vue';
 import { MdPreview } from 'md-editor-v3';
-const text = ref('Hello Editor!');
+const text = ref('Hello Editor!Hello Editor!Hellor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Edito Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!Hello Editor!');
+
+const isExpand = ref(false)
+const expand = (()=>{
+	isExpand.value = !isExpand.value
+	console.log("aaa")
+})
+
+
 </script>
 <template>
 <div class="postItem">
@@ -17,8 +25,10 @@ const text = ref('Hello Editor!');
 			</div>
 		</div>
 		<div class="passage">
-			<MdPreview v-model="text" />
+			<MdPreview v-model="text" class="mdp" :class="{ unexpand: !isExpand }"/>
+			<button @click="expand">expand</button>
 		</div>
+		
 </div>
 </template>
 <style scoped>
@@ -48,5 +58,22 @@ const text = ref('Hello Editor!');
 	border-radius: 5px;
 	background-color: #fff;
 	margin-right: 10px;
+}
+.mdp{
+	overflow: hidden;
+	padding: 10px;
+
+}
+button{
+	width: 80px;
+	height: 40px;
+	border: none;
+	background-color: #1b6593;
+}
+.unexpand{
+	max-height: 120px;
+}
+.passage{
+
 }
 </style>
