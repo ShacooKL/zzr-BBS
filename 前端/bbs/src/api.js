@@ -27,16 +27,16 @@ export const login = async (username,password) => {
 
 
 };
-export const register = (name,password,gender) => {
+export const register = async (name,password,gender) => {
 	// 正常：
   const genderNum = gender=='男'?'1':'2'
-  api.post('users/register', {
+  await api.post('users/register', {
     username: name,        // 参数 firstName
     password: password,
     gender:genderNum   // 参数 lastName
   })
   .then(function (response) {
-    console.log(response);
+    return response.data
   })
   .catch(function (error) {
     console.log(error);
