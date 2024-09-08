@@ -12,41 +12,41 @@ const api = axios.create({
   },
 });
 
-export const login = async (username,password) => {
+export const login = async (username, password) => {
   await api.post('login', {
     username: username,        // 参数 firstName
     password: password   // 参数 lastName
   })
-  .then(function (response) {
-    console.log(response.data)
-    return response.data
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+    .then(function (response) {
+      console.log(response.data)
+      return response.data
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
 
 };
-export const register = async (name,password,gender) => {
-	// 正常：
-  const genderNum = gender=='男'?'1':'2'
+export const register = async (name, password, gender) => {
+  // 正常：
+  const genderNum = gender == '男' ? '1' : '2'
   await api.post('users/register', {
     username: name,        // 参数 firstName
     password: password,
-    gender:genderNum   // 参数 lastName
+    gender: genderNum   // 参数 lastName
   })
-  .then(function (response) {
-    return response.data
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-	// 测试：
-	// // 模拟异步请求
+    .then(function (response) {
+      return response.data
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  // 测试：
+  // // 模拟异步请求
   // return new Promise((resolve, reject) => {
   //   setTimeout(() => {
-	// 		console.log(name)
-	// 		console.log(password)
+  // 		console.log(name)
+  // 		console.log(password)
   //     // 模拟异步操作成功，返回数据
   //     if(password =='123')
   //       resolve({state:true,id:55210919,name:name,avatar:'/img/profile.jpg',email:name+'@qq.com'});
@@ -56,5 +56,22 @@ export const register = async (name,password,gender) => {
   //     // reject(new Error('Failed to fetch book.'));
   //   }, 50); 
   // });
+
+};
+
+export const post = async (userID, title, content) => {
+  await api.post('post', {
+    userID: userID,        
+    title: title,
+    content: content   
+  })
+    .then(function (response) {
+      console.log(response.data)
+      return response.data
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
 
 };
