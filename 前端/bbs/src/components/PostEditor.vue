@@ -62,7 +62,6 @@ const aa = (()=>{
 
 	
 	<button class="postButton">发送</button>
-	{{ imageUrl }}
 </div>
 
 
@@ -138,7 +137,6 @@ button{
 
 .image-item svg{
 	position: absolute;
-	z-index: 999;
 	width: 20px;
 	height: 20px;
 	right: 5px;
