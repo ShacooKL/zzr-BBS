@@ -2,9 +2,8 @@
 import { ref, computed, watch } from 'vue';
 import { MdPreview } from 'md-editor-v3';
 import PostIcon from '@/components/PostIcon.vue';
+
 const text = ref('zzr最美最漂亮最可爱\nhhh');
-
-
 const isDetailShow = ref(false)
 const postImgs = ref([])
 const imgLeftNum = ref(9)
@@ -42,13 +41,14 @@ const showDeatil = ((index) => {
 	isDetailShow.value = true
 })
 
-const rotate = (() => {
 
+const rotate = (() => {
 	const rect = detailImgRef.value.getBoundingClientRect();
 	if(rect.width>rect.height)
 		detailImgBoxRef.value.style.height = `${rect.width}px`;
 	else
 		detailImgBoxRef.value.style.height = `auto`;
+
 	setTimeout(() => {
 		rotationAngles.value += 90
 		rotationAngles.value = rotationAngles.value % 360
@@ -113,14 +113,16 @@ const rotate = (() => {
 					</div>
 				</div>
 
+				<!-- 2.2.1 详细大图 -->
 				<div class="imgDetail" ref="detailImgBoxRef">
 					<img ref="detailImgRef" :src=postImgs[curImgIndex] :style="{ transform: `rotate(${rotationAngles}deg)` }">
 					<div class="prevMask" v-if="curImgIndex > 0" @click="curImgIndex--"></div>
 					<div class="nextMask" v-if="curImgIndex < postImgs.length - 1" @click="curImgIndex++"></div>
 				</div>
 
+				<!-- 2.2.2 预览图 -->	
 				<div class="bottom">
-
+					<!-- 2.2.2.1 前一组 -->	
 					<div class="preGroup" v-if="curLeft >= 9" @click="curLeft = curLeft - 9">
 						<svg viewBox="0 0 1024 1024" width="20" height="20">
 							<path
@@ -131,6 +133,7 @@ const rotate = (() => {
 								p-id="2176"></path>
 						</svg>
 					</div>
+					<!-- 2.2.2.1 后一组 -->	
 					<div class="nextGroup" v-if="curLeft + 9 < postImgs.length" @click="curLeft = curLeft + 9">
 						<svg viewBox="0 0 1024 1024" width="20" height="20">
 							<path
@@ -141,7 +144,7 @@ const rotate = (() => {
 								p-id="2339"></path>
 						</svg>
 					</div>
-
+					<!-- 2.2.2.1 预览图 -->	
 					<div class="imgsPreviewBox">
 						<div class="imgsPreview" :style="{ transform: `translateX(-${translateXNum}%)` }">
 							<div class="previewImg" v-for="(img, index) in postImgs" :key="index" @click="curImgIndex = index" :style="{marginRight:(index+1)%9==0?'0px':'1.25%'}">
