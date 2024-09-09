@@ -183,7 +183,7 @@ const rotate = (() => {
 	min-height: 200px;
 	background-color: #ffffff;
 	margin-bottom: 10px;
-	border-radius: 15px;
+	border-radius: 5px;
 	box-sizing: border-box;
 }
 
@@ -396,6 +396,7 @@ button {
 	position: relative;
 	border-radius: 10px;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .previewImg img {

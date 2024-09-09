@@ -8,6 +8,7 @@ const imgInput = ref(null)
 
 //帖子文字内容
 const postContent = ref('')
+
 //图片临时url列表
 const imgUrls = ref([])
 const addColor = ref("#666666")
@@ -71,7 +72,7 @@ const aa = (()=>{
 	width: 100%;
 	min-height: 200px;
 	background-color: #fff;
-	border-radius: 15px;
+	border-radius: 5px;
 	margin-bottom: 10px;
 	padding: 20px;
 	box-sizing: border-box;
@@ -123,6 +124,7 @@ button{
 .image-item img{
 	width: 100%;
 	height: 100%;
+	border-radius: 10px;
 }
 .image-item button{
 	position: absolute;
