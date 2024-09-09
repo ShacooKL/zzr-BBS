@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-
+import * as api from "@/api"
 //文字输入组件ref
 const textarea = ref(null)
 //图片input组件 ref
@@ -10,6 +10,7 @@ const imgInput = ref(null)
 const postContent = ref('')
 
 //图片临时url列表
+const uploadImgs = ref([])
 const imgUrls = ref([])
 const addColor = ref("#666666")
 
@@ -19,20 +20,27 @@ const autoResize = (()=>{
 	textarea.value.style.height = textarea.value.scrollHeight + 'px';
 })
 
+const inputUpload = (()=>{
+	imgInput.value.value=''
+	imgInput.value.click()
+})
+
 const previewImage = (()=>{
 	//自动生成图片url并更新url列表
-	imgUrls.value = []
 	for(const file of imgInput.value.files){
-		imgUrls.value.push(URL.createObjectURL(file)  )
+		imgUrls.value.push(URL.createObjectURL(file)) 
+		uploadImgs.value.push(file)
 	}
 })
 
 const removeImage = (index) => {
 	imgUrls.value.splice(index, 1);  // 删除对应索引的图片
+	uploadImgs.value.splice(index,1)
 }
 
-const aa = (()=>{
-	imgInput.value.click()
+
+const post = (()=>{
+	 api.testPost(postContent.value,uploadImgs.value)
 })
 </script>
 <template>
@@ -56,13 +64,11 @@ const aa = (()=>{
 			<svg @click="removeImage(index)" t="1725787733373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2430" width="200" height="200"><path d="M512 149.333c200.299 0 362.667 162.368 362.667 362.667S712.299 874.667 512 874.667 149.333 712.299 149.333 512 311.701 149.333 512 149.333zM625.13 353.6L512.022 466.73 398.87 353.6 353.6 398.87l113.152 113.109L353.6 625.13l45.27 45.269L512 557.227l113.13 113.152 45.27-45.27L557.227 512l113.152-113.13-45.27-45.27z" p-id="2431"></path></svg>
 			
 		</div>
-		<div class="addImg" @click="aa" @mouseover="addColor='#dda02e'" @mouseleave="addColor='#666666'">
+		<div class="addImg" @click="inputUpload" @mouseover="addColor='#dda02e'" @mouseleave="addColor='#666666'">
 			<svg viewBox="0 0 1024 1024" width="30" height="30"><path d="M426.666667 426.666667H85.546667A85.418667 85.418667 0 0 0 0 512c0 47.445333 38.314667 85.333333 85.546667 85.333333H426.666667v341.12c0 47.274667 38.186667 85.546667 85.333333 85.546667 47.445333 0 85.333333-38.314667 85.333333-85.546667V597.333333h341.12A85.418667 85.418667 0 0 0 1024 512c0-47.445333-38.314667-85.333333-85.546667-85.333333H597.333333V85.546667A85.418667 85.418667 0 0 0 512 0c-47.445333 0-85.333333 38.314667-85.333333 85.546667V426.666667z" :fill="addColor" p-id="1439"></path></svg>
 		</div>
 	</div>
-
-	
-	<button class="postButton">发送</button>
+	<button class="postButton" @click="post">发送</button>
 </div>
 
 
